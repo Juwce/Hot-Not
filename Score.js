@@ -13,5 +13,11 @@ function Score(startingScore){
 
 Score.prototype.incrementBy = function(incVal){
     this.value += (incVal * POINTMULTIPLIER);
+    if(this.value < 0) this.value = 0;
     scoreLabel.innerHTML = "SCORE: " + this.value;
 };
+
+Score.prototype.getValue = function(){
+    return this.value;
+}
+

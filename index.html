@@ -53,6 +53,7 @@
         <div id = "losediv" class="container-fluid losediv">
             <div class="starter-template">
                 <p id = "loseLabel" class = "loseLabel">GAME OVER</p>
+                <p id = "highScoreLabel" class = "highScoreLabel">HIGH SCORE: 0</p>
                 <img onclick="showGamePage()" src="img/ui/start.gif" id="startButton" class="startButton">
             </div>
         </div>
@@ -70,6 +71,7 @@
                 document.getElementById("startdiv").style.display = "none";
                 document.getElementById("maindiv").style.display = "Block";
                 document.getElementById("losediv").style.display = "none";
+                document.getElementById("highScoreLabel").style.display = "block";
                 initGame();
             }
         </script>

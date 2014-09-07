@@ -49,6 +49,13 @@ h1 {
     font-size: 72px;
 }
 
+.highScoreLabel {
+    font-family: sans-serif;
+    margin-top: 30px;
+    font-size: 80px;
+    display: block;
+}
+
 .startdiv {
     margin-top:75px;
     align-content: center;
@@ -140,7 +147,7 @@ h1 {
     width: 200px;
     background-color: #838cac;
     align-self: left;
-    margin-top: 150px;
+    margin-top: 60px;
     border-radius: 10px;
     float: none;
     box-shadow: 0px 0px 20px #000;
