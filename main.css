@@ -1,21 +1,17 @@
 .maindiv {
-    position:relative;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 100;
     align-content: center;
     margin: auto;
-    width: 75%;
-    height:100%;
-    background-color: #616161;
+    width: 100%;
+    height:512px;
+    background-color: #e05126;
     
-    border: 0px solid;
-    border-radius: 20px;
-    background-color:#ffffff;
-    box-shadow: 0px 0px 15px #555;
-    
-    min-width: 400px;
-    max-width: 512px;
-    
-    display:none;
+    display:block;
+}
+
+h1 {
+    color: #fff;
+    top: -100px;
 }
 
 .startdiv {
@@ -35,7 +31,7 @@
     min-width: 400px;
     max-width: 512px;
     
-    display:block;
+    display:none;
 }
 
 .mainimage
@@ -106,21 +102,18 @@
 }
 
 .startButton {
-    width: 25%;
+    width: 50%;
     align-self: left;
-    margin-right: 80px;
-    margin-top: 10px;
+    margin-top: 50%;
     border-radius: 10px;
     float: none;
+    box-shadow: 0px 0px 20px #000;
     
     padding:10px;
-    
-    -webkit-filter: grayscale(1) drop-shadow(0px 0px 20px #555);
 }
 
 .startButton:hover {
-    width: 25%;
+    width: 50%;
     align-self: left;
     transform:scale(1.1);
-    -webkit-filter: grayscale(0) drop-shadow(0px 0px 40px rgb(228, 127, 33));
 }
