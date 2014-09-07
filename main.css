@@ -1,3 +1,20 @@
+body {
+    background:url(img/ui/fire.jpg);
+}
+
+.maindiv {
+    position:relative;
+    align-content: center;
+    margin: auto;
+    width: 75%;
+    
+    border: 0px solid;
+    border-radius: 20px;
+    background-color:#ffffff;
+    box-shadow: 0px 0px 15px #555;
+    min-width: 512px;
+}
+
 /* hotNotGrid */
 .hotNotGrid {
 	height: auto;
@@ -7,16 +24,54 @@
 	table-layout: fixed;
 }
 
+.mainimage
+{
+    width:90%;
+    margin-top:50px;
+    border:0px solid;
+    border-radius: 20px;
+    background-color:#555;
+    box-shadow: 0px 0px 15px #555;
+}
+
 .hotButton {
-    height: 100px; 
-    width: 100px;
+    width: 25%;
     align-self: center;
-    margin-right: 5px;
+    margin-right: 80px;
+    margin-top: 75px;
+    background:url("img/ui/desert.jpg");
+    border-radius: 6px;
+    float: none;
+    
+    padding:10px;
+    
+    -webkit-filter: grayscale(1) drop-shadow(0px 0px 20px #555);
 }
 
 .notButton {
-    height: 100px; 
-    width: 100px;
+    width: 25%;
     align-self: auto;
-    margin-left: 5px;
+    margin-left: 25px;
+    margin-top: 75px;
+    background:url("img/ui/ice.jpg");
+    border-radius: 6px;
+    float: none;
+    
+    padding:10px;
+    
+    -webkit-filter: grayscale(1) drop-shadow(0px 0px 20px #555);
+}
+
+.hotButton:hover {
+    width: 25%;
+    align-self: center;
+    transform:scale(1.05);
+    -webkit-filter: grayscale(0) drop-shadow(0px 0px 40px rgb(228, 127, 33));
+}
+
+.notButton:hover {
+    width: 25%;
+    align-self: center;
+    transform:scale(1.05);
+    -webkit-filter: grayscale(0) drop-shadow(0px 0px 40px rgb(63, 219, 213));
 }
