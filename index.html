@@ -28,6 +28,16 @@
 <![endif]-->
     </head>
     <body>
+        <script type="text/javascript">
+            function showGamePage()
+            {
+                document.getElementById("startdiv").style.display = "none";
+                document.getElementById("maindiv").style.display = "Block";
+                document.getElementById("losediv").style.display = "none";
+                document.getElementById("highScoreLabel").style.display = "block";
+                initGame();
+            }
+        </script>
         <h1></h1>
         <div id = "maindiv" class="container-fluid maindiv">
             <div class="starter-template">
@@ -61,19 +71,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="/Score.js"></script>
-        <script src="/Timer.js"></script>
-        <script src="/Image.js"></script>
-        <script src="/logic.js"></script>
-        <script type="text/javascript">
-            function showGamePage()
-            {
-                document.getElementById("startdiv").style.display = "none";
-                document.getElementById("maindiv").style.display = "Block";
-                document.getElementById("losediv").style.display = "none";
-                document.getElementById("highScoreLabel").style.display = "block";
-                initGame();
-            }
-        </script>
+        <script src="js/Score.js"></script>
+        <script src="js/Timer.js"></script>
+        <script src="js/Image.js"></script>
+        <script src="js/logic.js"></script>
     </body>
 </html>
