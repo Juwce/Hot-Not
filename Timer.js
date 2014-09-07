@@ -1,11 +1,11 @@
 //to start timer: var timerStart = setInterval(Timer.subtractTime(1), 1000);
 //to stop timer: clearInterval(timerStart);
-var timeLabel = document.getElementById("timerLabel");
+var redbar = document.getElementById("redbar");
 
 function Timer(timeLeft){
     this.timeLeft = timeLeft;
     var that = this;
-    timeLabel.innerHTML = "TIME: " + timeLeft;
+    redbar.style.height = "272px";
 }
 
 Timer.prototype.getTimeLeft = function(){
@@ -14,10 +14,14 @@ Timer.prototype.getTimeLeft = function(){
 
 Timer.prototype.addTime = function(timeToSub){
     this.timeLeft += timeToSub;
-    timeLabel.innerHTML = "TIME: " + this.timeLeft;
+    var h = (this.timeLeft / 60.0) * 272.0;
+    redbar.style.height = h + "px";
+    if (this.timeLeft > 60)
+        this.timeL = 60;
 };
 
 Timer.prototype.subtractTime = function(timeToSub){
     this.timeLeft -= timeToSub;
-    timeLabel.innerHTML = "TIME: " + this.timeLeft;
+    var h = (this.timeLeft / 60.0) * 272.0;
+    redbar.style.height = h + "px";
 };

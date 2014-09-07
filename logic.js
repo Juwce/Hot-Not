@@ -30,7 +30,7 @@ function initGame(){
             timer.subtractTime(1); if (timer.getTimeLeft() <= 0)
                 gameOverVar();
             console.log(timer.getTimeLeft());
-        }, 1000);
+        }, 250);
         hotButton.onclick = function(){
             if(NEXTCLICKREADY)handleHotOrNotClick(true)
             NEXTCLICKREADY = false;
@@ -63,8 +63,10 @@ function initGame(){
 
     function gameOver(){
         console.log("GAMEOVER");
+        document.getElementById("startdiv").style.display = "none";
+        document.getElementById("maindiv").style.display = "none";
+        document.getElementById("losediv").style.display = "Block";
         clearInterval(timerStart);
-        initGame();
         return;
 
     };
