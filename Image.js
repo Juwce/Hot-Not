@@ -20,5 +20,5 @@ var allImages = [
         new Image( "/img/pepper.jpg" , true , 3, "pepper" ),
         new Image( "/img/road.jpg" , true , 3, "road" ),
         new Image( "/img/snow.jpg" , false , 2, "snow" ),
-        new Image( "/img/space.jpg" , false , 7, "space" );
+        new Image( "/img/space.jpg" , false , 7, "space" )
 ];

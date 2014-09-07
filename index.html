@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script src="logic.js"></script>
-        <script src="Score.js"></script>
-        <script src="Timer.js"></script>
-        <script src="utils.js"></script>
-        <script src="Image.js"></script>
-        <script type="text/javascript">
-            function showGamePage()
-            {
-                document.getElementById("startdiv").style.display = "none";
-                document.getElementById("maindiv").style.display = "Block";
-            }
-        </script>
-        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,23 +31,35 @@
         <div id = "maindiv" class="container-fluid maindiv">
             <div class="starter-template">
                 <h1>HOT OR NOT</h1>
-                <img src="img/nokia.jpg" id="mainimage" class = "mainimage">
-                <p id="timerLabel" class="timerLabel">Time:10</p>
+                <img src="img/nokia.jpg" id="mainImage" class = "mainimage">
+                <p id="timerLabel" class="timerLabel">TIME: 60</p>
                 <div></div>
                 <img src="img/ui/hot.png" id="hotButton" class="hotButton">
                 <img src="img/ui/not.png" id="notButton" class ="notButton">
-                <p id="scoreLabel" class="scoreLabel">Score: -999</p>
+                <p id="scoreLabel" class="scoreLabel">SCORE: 0</p>
             </div>
         </div>
         <div id = "startdiv" class="container-fluid startdiv">
             <div class="starter-template">
                 <h1>HOT OR NOT</h1>
-                <img onclick="showGamePage();" src="img/ui/start.gif" id="startButton" class="startButton">
+                <img onclick="showGamePage()" src="img/ui/start.gif" id="startButton" class="startButton">
             </div>
         </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="/Score.js"></script>
+        <script src="/Timer.js"></script>
+        <script src="/Image.js"></script>
+        <script src="/logic.js"></script>
+        <script type="text/javascript">
+            function showGamePage()
+            {
+                document.getElementById("startdiv").style.display = "none";
+                document.getElementById("maindiv").style.display = "Block";
+                initGame();
+            }
+        </script>
     </body>
 </html>
