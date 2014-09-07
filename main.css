@@ -35,7 +35,12 @@
 }
 
 h1 {
+    position:absolute;
     margin-top: -60px;
+    width:383px;
+    height:73px;
+    left:calc(50% - 191.5px);
+    background-image:url("img/ui/logo.png");
 }
 
 .loseLabel {
