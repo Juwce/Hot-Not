@@ -4,8 +4,8 @@ mainImage = document.getElementById("mainImage"),
     hotButton = document.getElementById("hotButton"),
     notButton = document.getElementById("notButton"),
     ///GLOBALVALUES///
-    SUBTRACTFROMTIMERONWRONGCLICK = 3,
-    ADDTORIGHTCLICK = 10,
+    SUBTRACTFROMTIMERONWRONGCLICK = 10,
+    ADDTORIGHTCLICK = 5,
     TIMESUBTRACTPERINTERVAL = .1,
     INTERVALLENGTHINMILLISECONDS = 3;
 TIMERSTARTINGSECONDS = 60, //keep at 60 or else thermometer breaks
@@ -15,7 +15,7 @@ TIMERSTARTINGSECONDS = 60, //keep at 60 or else thermometer breaks
 function initGame(){
     var score = new Score(0);
     var timer = new Timer(TIMERSTARTINGSECONDS);
-    var images = allImages,
+    var images = allImages(),
         nextClickReady = true,
         waitingForFirstClick = true,
         currentImageIndex = getRandomIndexBetween(0,images.length - 1),
@@ -26,7 +26,7 @@ function initGame(){
 
     //set main image and wait for start button click
     mainImage.src = currentImage.srcURL;
-    hotButton.onclick = function(){runGame()};
+    hotButton.onclick = function(){if(waitingForFirstClick) runGame(); waitingForFirstClick = false;};
 
     //start timer countdown, on click check if correct and react accordingly
     function runGame() {
@@ -48,13 +48,14 @@ function initGame(){
 
     //add time to timer and increase score if right, opposite if wrong
     function handleHotOrNotClick(hotClickBool){
-        if(images.length < 1) gameWon();
         var correct = currentImage.hotBool === hotClickBool;
         if(correct) {
+            if(images.length <= 1) gameWon();
             timer.addTime(ADDTORIGHTCLICK);
             score.incrementBy(currentImage.pointsWorth);
             //remove current image from array, get new current Image
             images.splice(currentImageIndex, 1);
+            if(images.length <= 1) gameWon();
             currentImageIndex = getRandomIndexBetween(0,images.length - 1);
             currentImage = images[currentImageIndex];
             mainImage.src = currentImage.srcURL;
@@ -66,23 +67,25 @@ function initGame(){
     };
 
     function gameWon(){
-        console.log("GAME WON!!");        
         clearInterval(timerStart);
+        console.log("GAME WON!!");
         clearInterval(checkIfWon);
         document.getElementById("loseLabel").innerHTML = "YOU WIN!!";
         document.getElementById("startdiv").style.display = "none";
         document.getElementById("maindiv").style.display = "none";
         document.getElementById("losediv").style.display = "Block";
+        initGame();
     }
 
     function gameOver(){
-        console.log("GAMEOVER");
         clearInterval(timerStart);
+        console.log("GAMEOVER");
         clearInterval(checkIfWon);
         document.getElementById("startdiv").style.display = "none";
         document.getElementById("maindiv").style.display = "none";
         document.getElementById("losediv").style.display = "Block";
         document.getElementById("loseLabel").innerHTML = "GAME OVER";
+        initGame();
     };
 
     initGame.prototype.checkTimer = function(timer){

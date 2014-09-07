@@ -5,8 +5,9 @@ function Image(srcURL, hotBool, pointsWorth, name ){
     this.name = name === null ? "no name given" : name;
 };
 
-var allImages = [
-    new Image( "/img/chair.jpg" , false , 4, "chair" ),
+var allImages = function(){ 
+    return [
+        new Image( "/img/chair.jpg" , false , 4, "chair" ),
         new Image( "/img/clubpenguin.jpg" , false , 2, "clubpenguin" ),
         new Image( "/img/desert.jpg" , true , 3, "desert" ),
         new Image( "/img/drink.jpg" , false , 2, "drink" ),
@@ -21,4 +22,5 @@ var allImages = [
         new Image( "/img/road.jpg" , true , 3, "road" ),
         new Image( "/img/snow.jpg" , false , 2, "snow" ),
         new Image( "/img/space.jpg" , false , 7, "space" )
-];
+    ];
+}
