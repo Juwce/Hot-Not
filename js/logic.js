@@ -88,7 +88,10 @@ function initGame(){
         navigateToMenuScreenWithText("YOU WIN!!!");
         var highScoreLabel = document.getElementById("highScoreLabel");
         highScoreLabel.style.display = "block";
-        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore();;
+        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore();
+        var finalScoreLabel = document.getElementById("finalScoreLabel");
+        finalScoreLabel.style.display = "block";
+        finalScoreLabel.innerHTML = "YOUR SCORE: " + score.getValue();
         initGame();
         return;
     }
@@ -101,6 +104,9 @@ function initGame(){
         var highScoreLabel = document.getElementById("highScoreLabel");
         highScoreLabel.style.display = "block";
         highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore();
+        var finalScoreLabel = document.getElementById("finalScoreLabel");
+        finalScoreLabel.style.display = "block";
+        finalScoreLabel.innerHTML = "YOUR SCORE: " + score.getValue();
         initGame();
         return;
     };
@@ -111,6 +117,7 @@ function initGame(){
         document.getElementById("maindiv").style.display = "none";
         document.getElementById("highScoreLabel").style.display = "block";
         document.getElementById("losediv").style.display = "Block";
+        document.getElementById("finalScoreLabel").style.display = "Block";
     }
     
     initGame.prototype.checkTimer = function(timer){
