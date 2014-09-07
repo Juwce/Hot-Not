@@ -12,6 +12,17 @@ var startButton = document.getElementById("startButton"),
     POINTMULTIPLIER = 100,
     WRONGCLICKSCORE = -2;
 
+//preload images
+function preload(){
+    var imgs = allImages();
+    for (i = 0; i < imgs; i < imgs.length) {
+        var img = new Image();
+        img.src=imgs[i];
+    }
+}
+
+preload();
+
 //run on start of game
 function initGame(){
     if(getHighScore() === null) setHighScore(0);
