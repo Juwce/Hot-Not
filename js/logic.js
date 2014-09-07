@@ -14,11 +14,14 @@ var startButton = document.getElementById("startButton"),
 
 //preload images
 function preload(){
+    document.getElementById("preloadLabel").innerHTML = "loading";
     var imgs = allImages();
     for (i = 0; i < imgs; i < imgs.length) {
         var img = new Image();
+        img.style.left = -9999;
         img.src=imgs[i];
     }
+    document.getElementById("preloadLabel").innerHTML = "loaded!";
 }
 
 preload();
