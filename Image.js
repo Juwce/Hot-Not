@@ -10,7 +10,7 @@ var allImages = [
         new Image( "/img/clubpenguin.jpg" , false , 2, "clubpenguin" ),
         new Image( "/img/desert.jpg" , true , 3, "desert" ),
         new Image( "/img/drink.jpg" , false , 2, "drink" ),
-        new Image( "/img/fire.jpg" , false , 3, "fire" ),
+        new Image( "/img/fire.jpg" , true , 3, "fire" ),
         new Image( "/img/forest.jpg" , false , 2, "forest" ),
         new Image( "/img/freezer.jpg" , false , 3, "freezer" ),
         new Image( "/img/icedesert.jpg" , false , 3, "icedesert" ),

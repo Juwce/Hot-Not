@@ -7,11 +7,11 @@ function Score(startingScore){
     scoreLabel.innerHTML = "SCORE: " + startingScore;
     
     var increment = function(){
-        that.value += 1;
+        that.value += 1 * POINTMULTIPLIER;
     };
 }
 
 Score.prototype.incrementBy = function(incVal){
-    this.value += incVal;
-    scoreLabel.innerHTML = "SCORE: " + this.timeLeft;
+    this.value += (incVal * POINTMULTIPLIER);
+    scoreLabel.innerHTML = "SCORE: " + this.value;
 };

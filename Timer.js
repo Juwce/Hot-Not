@@ -12,16 +12,15 @@ Timer.prototype.getTimeLeft = function(){
     return this.timeLeft;
 }
 
-Timer.prototype.addTime = function(timeToSub){
-    this.timeLeft += timeToSub;
-    var h = (this.timeLeft / 60.0) * 272.0;
+Timer.prototype.addTime = function(timeToAdd){
+    var timeLeft = this.timeLeft + timeToAdd <= TIMERSTARTINGSECONDS ? this.timeLeft += timeToAdd : this.timeLeft = TIMERSTARTINGSECONDS;
+    var h = (this.timeLeft / TIMERSTARTINGSECONDS) * 272.0;
+    if(h > 272.0) h = 272.0;
     redbar.style.height = h + "px";
-    if (this.timeLeft > 60)
-        this.timeL = 60;
 };
 
 Timer.prototype.subtractTime = function(timeToSub){
     this.timeLeft -= timeToSub;
-    var h = (this.timeLeft / 60.0) * 272.0;
+    var h = (this.timeLeft / TIMERSTARTINGSECONDS) * 272.0;
     redbar.style.height = h + "px";
 };
