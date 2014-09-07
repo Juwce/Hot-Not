@@ -1,20 +1,17 @@
+var scoreLabel = document.getElementById("scoreLabel");
+
 function Score(startingScore){
     this.value = startingScore;
-    var that = this,
-        scoreLabel = document.getElementById("scoreLabel");
+    var that = this;
+ 
     scoreLabel.innerHTML = "SCORE: " + startingScore;
     
     var increment = function(){
         that.value += 1;
-        adjustScoreLabel();
     };
-    
-    var incrementBy = function(incVal){
-        that.value += incVal;
-        adjustScoreLabel();
-    };
-    
-    function adjustScoreLabel() {
-        scoreLabel.innerHTML = "SCORE: " + that.value;
-    }
 }
+
+Score.prototype.incrementBy = function(incVal){
+    this.value += incVal;
+    scoreLabel.innerHTML = "SCORE: " + this.timeLeft;
+};

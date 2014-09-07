@@ -4,7 +4,8 @@ var startButton = document.getElementById("startButton");
     hotButton = document.getElementById("hotButton"),
     notButton = document.getElementById("notButton"),
     ///GLOBALVALUES///
-    SUBTRACTFROMTIMERONWRONGCLICK = 0;
+    SUBTRACTFROMTIMERONWRONGCLICK = 0,
+    NEXTCLICKREADY = true;
 
 //run on start of game
 function initGame(){
@@ -12,51 +13,65 @@ function initGame(){
     var timer = new Timer(60);
     var images = allImages,
         waitingForFirstClick = true,
-        currentImageIndex = getRandomIndexBetween(0,images.length),
+        currentImageIndex = getRandomIndexBetween(0,images.length - 1),
         currentImage = images[currentImageIndex],
+        that = this,
         timerStart,
         checkTimer;
 
     //set main image and wait for start button click
     mainImage.src = currentImage.srcURL;
-    hotButton.onclick=function(){runGame()};
+    hotButton.onclick = function(){runGame()};
 
     //start timer countdown, on click check if correct and react accordingly
     function runGame() {
-        console.log("YEEEE");
-        timerStart = setInterval(timer.subtractTime(1), 1000);
-        checkTimer = setInterval(checkTimer(timer), 1000);
-        hotButton.click(handleHotOrNotClick(true));
-        notButton.click(handleHotOrNotClick(false));
+        var gameOverVar = function(){gameOver()}
+            timerStart = setInterval(function(){
+            timer.subtractTime(1); if (timer.getTimeLeft() <= 0)
+                gameOverVar();
+            console.log(timer.getTimeLeft());
+        }, 1000);
+        hotButton.onclick = function(){
+            if(NEXTCLICKREADY)handleHotOrNotClick(true)
+            NEXTCLICKREADY = false;
+        };
+        notButton.onclick = function(){
+            if(NEXTCLICKREADY)handleHotOrNotClick(false)
+            NEXTCLICKREADY = false;
+        };
     };
 
     //add time to timer and increase score if right, opposite if wrong
     function handleHotOrNotClick(hotClickBool){
+        console.log(JSON.stringify(currentImage));
+        console.log(hotClickBool);
         var correct = currentImage.hotBool === hotClickBool;
         if(correct) {
             timer.addTime(3);
             score.incrementBy(currentImage.pointsWorth);
+            //remove current image from array, get new current Image
+            images.splice(currentImageIndex, 1);
+            currentImageIndex = getRandomIndexBetween(0,images.length - 1);
+            currentImage = images[currentImageIndex];
+            mainImage.src = currentImage.srcURL;
         } else {
             timer.subtractTime(SUBTRACTFROMTIMERONWRONGCLICK);
             score.incrementBy(-1);
         }
-        //remove current image from array, get new current Image
-        images.splice(currentImageIndex, 1);
-        currentImageIndex = getRandomIndexBetween(0,images.length);
-        currentImage = images[currentImageIndex];
-    }
+        NEXTCLICKREADY = true;
+    };
 
     function gameOver(){
+        console.log("GAMEOVER");
         clearInterval(timerStart);
-        clearInterval(checkTimer);
         initGame();
         return;
 
     };
 
-    function checkTimer(timer){
+    initGame.prototype.checkTimer = function(timer){
         if (timer.timeLeft <= 0)
-            gameOver();
+            this.gameOver();
     };
 
     function getRandomIndexBetween(firstIndex, lastIndex){
