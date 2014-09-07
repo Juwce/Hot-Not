@@ -1,0 +1,22 @@
+/* hotNotGrid */
+.hotNotGrid {
+	height: auto;
+	width:100%;
+	margin: 4px 0px 4px 0px;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.hotButton {
+    height: 100px; 
+    width: 100px;
+    align-self: center;
+    margin-right: 5px;
+}
+
+.notButton {
+    height: 100px; 
+    width: 100px;
+    align-self: auto;
+    margin-left: 5px;
+}
