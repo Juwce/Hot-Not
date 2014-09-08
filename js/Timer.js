@@ -23,4 +23,10 @@ Timer.prototype.subtractTime = function(timeToSub){
     this.timeLeft -= timeToSub;
     var h = (this.timeLeft / TIMERSTARTINGSECONDS) * 272.0;
     redbar.style.height = h + "px";
+    
+Timer.prototype.addGameTime = function(timeToAdd){
+    timeToAdd = Math.floor(timeToAdd * 10)/10;
+    this.timeLeft += timeToAdd;
+    console.log(this.timeLeft);
+}
 };

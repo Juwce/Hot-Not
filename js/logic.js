@@ -5,10 +5,10 @@ var startButton = document.getElementById("startButton"),
     notButton = document.getElementById("notButton"),
     ///GLOBALVALUES///
     SUBTRACTFROMTIMERONWRONGCLICK = 5,
-    RIGHTCLICKSCORE = 7,
+    RIGHTCLICKSCORE = 5,
     TIMESUBTRACTPERINTERVAL = 0.1,
     INTERVALLENGTHINMILLISECONDS = 3,
-    TIMERSTARTINGSECONDS = 60, //keep at 60 or else thermometer breaks
+    TIMERSTARTINGSECONDS = 50,
     POINTMULTIPLIER = 100,
     WRONGCLICKSCORE = -2;
 
@@ -29,8 +29,10 @@ preload();
 //run on start of game
 function initGame(){
     if(getHighScore() === null) setHighScore(0);
+    if(getBestTime() === null) setBestTime(100000);
     var score = new Score(0);
     var timer = new Timer(TIMERSTARTINGSECONDS);
+    var gameTimer = new Timer(0);
     var images = allImages(),
         nextClickReady = false,
         waitingForFirstClick = true,
@@ -38,6 +40,7 @@ function initGame(){
         currentImage = images[currentImageIndex],
         that = this,
         timerStart,
+        gameTimerStart,
         checkIfWon;
 
     //set main image and wait for start button click
@@ -53,7 +56,7 @@ function initGame(){
             timer.subtractTime(TIMESUBTRACTPERINTERVAL); 
             if (timer.getTimeLeft() <= 0)gameOverVar();
         }, INTERVALLENGTHINMILLISECONDS);
-
+        gameTimerStart = setInterval(function(){gameTimer.addGameTime(.1)}, 100);
         checkIfWon = setInterval(function(){if(images.length < 1) gameWon()}, 50);
 
         hotButton.onclick = function(){if(nextClickReady)nextClickReady = handleHotOrNotClick(true)};
@@ -83,24 +86,32 @@ function initGame(){
 
     function gameWon(){
         clearInterval(timerStart);
+        clearInterval(gameTimerStart);
         console.log("GAME WON!!");
         clearInterval(checkIfWon);
         navigateToMenuScreenWithText("YOU WIN!!!");
         var highScoreLabel = document.getElementById("highScoreLabel");
         highScoreLabel.style.display = "block";
-        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore();;
+        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore() + "\nIN " + evaluateBestTime() + " SECONDS";
+        var finalScoreLabel = document.getElementById("finalScoreLabel");
+        finalScoreLabel.style.display = "block";
+        finalScoreLabel.innerHTML = "YOUR SCORE: " + score.getValue() + "\nIN " + gameTimer.timeLeft + " SECONDS";
         initGame();
         return;
     }
 
     function gameOver(){
         clearInterval(timerStart);
+        clearInterval(gameTimerStart);
         console.log("GAMEOVER");
         clearInterval(checkIfWon);
         navigateToMenuScreenWithText("GAME OVER");
         var highScoreLabel = document.getElementById("highScoreLabel");
         highScoreLabel.style.display = "block";
-        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore();
+        highScoreLabel.innerHTML = "HIGH SCORE: " + evaluateHighScore() + " IN " + evaluateBestTime() + " SECONDS";
+        var finalScoreLabel = document.getElementById("finalScoreLabel");
+        finalScoreLabel.style.display = "block";
+        finalScoreLabel.innerHTML = "YOUR SCORE: " + score.getValue() + " IN " + gameTimer.timeLeft + " SECONDS";
         initGame();
         return;
     };
@@ -111,6 +122,7 @@ function initGame(){
         document.getElementById("maindiv").style.display = "none";
         document.getElementById("highScoreLabel").style.display = "block";
         document.getElementById("losediv").style.display = "Block";
+        document.getElementById("finalScoreLabel").style.display = "Block";
     }
     
     initGame.prototype.checkTimer = function(timer){
@@ -128,15 +140,31 @@ function initGame(){
         return images[getRandomIndexBetween(firstIndex, lastIndex)];
     };
 
+    function evaluateBestTime(){
+        if(Number(getBestTime()) > gameTimer.timeLeft) {
+            var roundedTime = Math.round(gameTimer.timeLeft*10)/10.0;
+            setBestTime(roundedTime);
+        }
+        console.log(roundedTime);
+        return getBestTime();
+    };
+    
+    function getBestTime(){
+        return localStorage.getItem("bestTime");
+    };
+    
+    function setBestTime(time){
+        return localStorage.setItem("bestTime", time);
+    };
     
     function evaluateHighScore(){
         if(Number(getHighScore()) < score.getValue()) setHighScore(score.getValue());
         return getHighScore();
-    }
+    };
     
     function getHighScore(){
         return localStorage.getItem("highscore");
-    }
+    };
 
     function setHighScore(value){
         return localStorage.setItem("highscore", value);

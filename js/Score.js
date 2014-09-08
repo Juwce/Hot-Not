@@ -20,4 +20,3 @@ Score.prototype.incrementBy = function(incVal){
 Score.prototype.getValue = function(){
     return this.value;
 }
-
